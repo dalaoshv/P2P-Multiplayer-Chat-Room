@@ -8,6 +8,9 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/P2P-Multiplayer-Chat-Room/',
+  build: {
+    outDir: 'docs'
+  },
   plugins: [
     vue(),
     AutoImport({
