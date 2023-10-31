@@ -14,4 +14,4 @@ import SendBar from './SendBar/index.vue'
   </div>
 </template>
 
-<style lang="scss" src="style.scss" />
+<style lang="scss" src="./style.scss" />

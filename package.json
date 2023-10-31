@@ -1,0 +1,13 @@
+{
+  "name": "p2p-multiplayer-chat-room",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "pnpm run --filter website dev",
+    "server": "pnpm run --filter server start",
+    "publish": "pnpm run --filter website build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

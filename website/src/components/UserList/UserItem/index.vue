@@ -50,4 +50,4 @@ const handleRightClick = (e: MouseEvent) => {
   </li>
 </template>
 
-<style lang="scss" src="style.scss" scoped />
+<style lang="scss" src="./style.scss" scoped />

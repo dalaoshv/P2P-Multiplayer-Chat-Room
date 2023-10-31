@@ -9,7 +9,7 @@ import path from 'path'
 export default defineConfig({
   base: '/P2P-Multiplayer-Chat-Room/',
   build: {
-    outDir: 'docs'
+    outDir: '../docs' // 导出到项目根目录，人工部署Github Page
   },
   plugins: [
     vue(),

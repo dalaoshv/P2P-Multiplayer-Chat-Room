@@ -65,7 +65,7 @@ import UserItem from './UserItem/index.vue'
   </div>
 </template>
 
-<style lang="scss" src="style.scss" scoped />
+<style lang="scss" src="./style.scss" scoped />
 
 <style>
 /* 1. 声明过渡效果 */

@@ -42,4 +42,4 @@ const sendMsgHandler = () => {
   </div>
 </template>
 
-<style lang="scss" src="styles.scss" scoped />
+<style lang="scss" src="./style.scss" scoped />
