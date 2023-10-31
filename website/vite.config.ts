@@ -23,7 +23,7 @@ export default defineConfig({
   resolve: {
     // Vite路径别名配置
     alias: {
-      '@': path.resolve('./src')
+      '@': path.resolve(__dirname, 'src')
     }
   }
 })
