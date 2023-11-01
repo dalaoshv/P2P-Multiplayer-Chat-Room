@@ -1,41 +1,31 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const {verify} = require("./utils/auth");
+const {io} = require("./utils/sever");
+const {user_login, verifying} = require("./core/login");
+const {user_online, user_offline} = require("./core/status");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+function start() {
+    io.on("connection", (socket) => {
+        // 挂载SocketIO实例
+        socket.io = io;
+        socket.token = socket.handshake.auth.token;
 
-var app = express();
+        // 监听登录请求
+        socket.on('login', user_login);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+        // 有效授权用户名
+        socket.username = verify(socket.token)?.username;
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+        // 无授权或授权失效
+        if(!socket.username) return;
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+        // 监听用户下线
+        socket.on('disconnect', user_offline);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+        // 监听用户上线
+        socket.once('user-online', user_online);
+    });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    io.listen(3000);
+}
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+start();
