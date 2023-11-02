@@ -8,17 +8,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('./src/components/Widgets/Avatar/index.vue')['default']
-    ChatBox: typeof import('./src/components/ChatBox/index.vue')['default']
-    ChatList: typeof import('./src/components/ChatBox/ChatList/index.vue')['default']
-    ContextMenu: typeof import('./src/components/UserList/ContextMenu/index.vue')['default']
-    ElAvatar: typeof import('element-plus/es')['ElAvatar']
-    ElButton: typeof import('element-plus/es')['ElButton']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElDialog: typeof import('element-plus/es')['ElDialog']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
     Icon: typeof import('./src/components/Widgets/Icon/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SendBar: typeof import('./src/components/ChatBox/SendBar/index.vue')['default']
     UserItem: typeof import('./src/components/UserList/UserItem/index.vue')['default']
     UserList: typeof import('./src/components/UserList/index.vue')['default']
     UserLogin: typeof import('./src/components/UserLogin/index.vue')['default']

@@ -20,7 +20,11 @@
   }
 
   .user-name {
+    flex: 1;
     display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
 
     .text {
       max-width: 110px;
@@ -29,5 +33,16 @@
       white-space: nowrap;
     }
 
+    .status {
+      top: 0;
+      right: 0;
+      z-index: 1;
+      position: absolute;
+
+      width: 7.2px;
+      height: 7.2px;
+      border-radius: 50%;
+      background-color: #f56c6c;
+    }
   }
 }

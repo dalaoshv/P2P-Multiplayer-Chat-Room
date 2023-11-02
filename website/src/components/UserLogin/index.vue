@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {useUserInfo} from "@/stores/userinfo.ts";
+import {useUserInfo} from "@/stores/user.ts";
 
 const username = ref('');
 const password = ref('');

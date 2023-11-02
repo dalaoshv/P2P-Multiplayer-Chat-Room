@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from "vue";
 import {useRoute, useRouter} from "vue-router";
-import {useUserInfo} from "@/stores/userinfo.ts";
+import {useUserInfo} from "@/stores/user.ts";
 import {useP2PChatRoom} from "@/stores/p2p.ts";
 
 const props = defineProps<{
@@ -42,6 +42,7 @@ const handleJump = () => {
     />
     <div class="user-name">
       <div class="text">{{props.username}}</div>
+      <div class="status" v-if="p2p.active.has(props.username)" />
     </div>
   </li>
 </template>

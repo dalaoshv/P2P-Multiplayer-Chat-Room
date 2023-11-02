@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import Icon from '../Icon';
 
 interface Props {
   /** 头像地址 */

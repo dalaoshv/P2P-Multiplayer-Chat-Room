@@ -1,6 +1,8 @@
 import {defineStore} from "pinia";
-import {reactive, ref} from "vue";
-import {useUserInfo} from "@/stores/userinfo.ts";
+import {useRoute} from "vue-router";
+import {computed, reactive, watch, ref} from "vue";
+
+import {useUserInfo} from "@/stores/user.ts";
 import {peer, socket, connections} from "@/utils/socket.ts";
 
 interface Chatlogs {
@@ -11,12 +13,22 @@ interface Chatlogs {
 
 export const useP2PChatRoom = defineStore('p2p', () => {
     const user = useUserInfo();
+    const active = ref(new Set<string>());
     // 在线P2P端： username -> {peerID, connect}
     const online = ref(new Map<string, string>());
     // 建立通信的P2P端信息(-1 - 待连接 | 0 - 待发送 | 1 - 待同意 | 2 - 开始通话)
     const permits = reactive<{ [key: string]: -1 | 0 | 1 | 2 }>({});
     // 聊天记录 {key(username|common): ChatLogs[]}
     const chatlogs = reactive<{ [key: string]: Chatlogs[] }>({});
+
+    const route = useRoute();
+    const currentUser = computed(() => (
+        !route.params?.id || !online.value.has(route.params.id) || user.username === route.params.id ? user.username : route.params.id
+    ));
+
+    watch(() => route.params, () => {
+        active.value.delete(currentUser.value);
+    });
 
     function joinOneChatLogs(key: string, logs: Chatlogs) {
         // 判断是否存在对象记录
@@ -53,6 +65,12 @@ export const useP2PChatRoom = defineStore('p2p', () => {
         dataConnection.on('data', ({event, data}) => {
             console.log(event, data)
 
+            // 其他用户收到消息
+            if(data?.key !== '@' && username !== currentUser.value) {
+                console.log(6666, username, currentUser.value)
+                active.value.add(username);
+            }
+
             // 请求聊天
             if (event === 'call') {
                 if (permits[username] === 2) {
@@ -84,6 +102,11 @@ export const useP2PChatRoom = defineStore('p2p', () => {
                 // 聊天对象，内容，发送对象
                 const {key, content, username} = data;
 
+                // 收到全体消息
+                if(data?.key === '@' && currentUser.value !== user.username) {
+                    active.value.add(user.username);
+                }
+
                 joinOneChatLogs(key, {
                     content,
                     username,
@@ -105,19 +128,25 @@ export const useP2PChatRoom = defineStore('p2p', () => {
     peer.on('connection', (dataConnection) => {
         const username = dataConnection.metadata;
         const isExisted = connections.has(username);
-        if (isExisted) connections.get(username).close();
+
+        if (isExisted) {
+            connections.get(username).close();
+            if(currentUser.value !== username) {
+                active.value.add(username);
+            }
+        }
 
         dataConnection.once('open', () => {
             joinOneChatLogs(username, {
                 type: 'it',
-                content: isExisted ? '对方重新加入了连接' : '已与该用户建立P2P连接，等待发送聊天请求'
+                content: isExisted ? '对方重新建立了连接' : '已与该用户建立P2P连接，等待发送聊天请求'
             });
         });
 
         // 保存新上线的连接
         connections.set(username, dataConnection);
 
-        // 建立了连接
+        // 建立连接
         createPeerListener(dataConnection, username);
     });
 
@@ -187,6 +216,7 @@ export const useP2PChatRoom = defineStore('p2p', () => {
     });
 
     return {
+        active,
         online,
         permits,
         chatlogs,

@@ -1,12 +1,9 @@
 @font-face {
-  font-family: mallchat; /* Project id 4142069 */
-  src: url('//at.alicdn.com/t/c/font_4142069_j1hgr4n5.woff2?t=1692714195475') format('woff2'),
-    url('//at.alicdn.com/t/c/font_4142069_j1hgr4n5.woff?t=1692714195475') format('woff'),
-    url('//at.alicdn.com/t/c/font_4142069_j1hgr4n5.ttf?t=1692714195475') format('truetype');
+  font-family: mallchat;
+  src: url('mallchat.woff2') format('woff2'), url('mallchat.woff') format('woff'), url('mallchat.ttf') format('truetype');
 }
 
 .mallchat {
-  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: mallchat !important;
   font-size: 16px;
   font-style: normal;
@@ -18,38 +15,12 @@
   content: '\e638';
 }
 
-
-.icon-group::before {
-  content: '\e6ff';
-}
-
 .icon-chat::before {
   content: '\e69d';
 }
 
-.icon-tianjia::before {
-  content: '\e622';
-}
-
-.icon-biaoqing::before {
-  content: '\e61c';
-}
-
-.icon-guanbi1::before {
-  content: '\eaf2';
-}
-
-
 .icon-huojian::before {
   content: '\e68b';
-}
-
-.icon-like::before {
-  content: '\e85c';
-}
-
-.icon-reply::before {
-  content: '\e716';
 }
 
 .icon-totop::before {

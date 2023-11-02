@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {ref, computed, nextTick, onBeforeUpdate} from "vue";
+import {ref, nextTick, onBeforeUpdate, computed} from "vue";
+
+import {useUserInfo} from "@/stores/user.ts";
 import {useP2PChatRoom} from "@/stores/p2p.ts";
-import {useUserInfo} from "@/stores/userinfo.ts";
 
 const props = defineProps<{
   username?: string;

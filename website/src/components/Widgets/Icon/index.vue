@@ -10,8 +10,6 @@ interface Props {
   rotate?: number
   /** 加载态 */
   spin?: boolean
-  /** 是否多色 */
-  colorful?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   size: 16,
@@ -21,7 +19,6 @@ const iconCls = computed(() => {
   return [
     {
       mallchat: !props.colorful,
-      mallchatcolor: props.colorful,
       [`icon-spin`]: props.spin,
     },
     `icon-${props.icon}`,

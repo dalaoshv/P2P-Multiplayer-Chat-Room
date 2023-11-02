@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue';
 import {useP2PChatRoom} from "@/stores/p2p.ts";
-import {useUserInfo} from "@/stores/userinfo.ts";
+import {useUserInfo} from "@/stores/user.ts";
 import {connections} from "@/utils/socket.ts";
 
 const props = defineProps<{
@@ -14,7 +14,7 @@ const p2p = useP2PChatRoom();
 const {loginState} = useUserInfo();
 
 const isClearDisabled = computed(() => !(
-    loginState.hasLogin && p2p.chatlogs[props.username || '@'].length
+    loginState.hasLogin && p2p.chatlogs[props.username || '@']?.length
 ));
 
 const currentPermitState = computed(() => (

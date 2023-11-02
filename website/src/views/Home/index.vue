@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import UserList from '../../components/UserList/index.vue'
-import UserLogin from '../../components/UserLogin/index.vue'
+import UserList from "@/components/UserList";
+import UserLogin from "@/components/UserLogin";
 </script>
 
 <template>
   <main class="home">
-    <UserLogin />
     <UserList />
+    <UserLogin />
     <RouterView />
   </main>
 </template>

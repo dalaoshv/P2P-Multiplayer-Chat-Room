@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import {computed} from "vue";
+import {computed, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
-import SendBar from './SendBar/index.vue';
-import ChatList from './ChatList/index.vue';
+import {useUserInfo} from "@/stores/user.ts";
 import {useP2PChatRoom} from "@/stores/p2p.ts";
-import {useUserInfo} from "@/stores/userinfo.ts";
+
+import SendBar from "./SendBar";
+import ChatList from "./ChatList";
 
 const route = useRoute();
 const user = useUserInfo();
