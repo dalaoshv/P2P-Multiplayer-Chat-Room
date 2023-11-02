@@ -13,10 +13,10 @@ function start() {
         socket.on('login', user_login);
 
         // 有效授权用户名
-        socket.username = verify(socket.token)?.username;
+        socket.userinfo = verify(socket.token);
 
         // 无授权或授权失效
-        if(!socket.username) return;
+        if(!socket.userinfo) return;
 
         // 监听用户下线
         socket.on('disconnect', user_offline);

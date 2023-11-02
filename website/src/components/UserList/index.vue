@@ -1,66 +1,19 @@
 <script setup lang="ts">
-import UserItem from './UserItem/index.vue'
+import UserItem from './UserItem/index.vue';
+import {useOnlineUsers} from "@/stores/activists.ts";
 
+const {onlineUsers} = useOnlineUsers();
 </script>
 
 <template>
   <div class="user-list-wrapper">
-    <div class="user-list-header">在线人数：0</div>
-    <template v-if="true">
-      <div class="list-no-data">暂无成员~</div>
-    </template>
+    <div class="user-list-header">在线人数：{{onlineUsers.size}}</div>
     <TransitionGroup tag="ul" name="fade" class="user-list">
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <UserItem :user="{avatar: '',id: 'aaa',connected: true, name: '游客'}" />
-      <li key="visible_el" ref="groupListLastElRef">&nbsp;</li>
+      <UserItem
+          :key="username"
+          :username="username"
+          v-for="[username] of onlineUsers.entries()"
+      />
     </TransitionGroup>
   </div>
 </template>

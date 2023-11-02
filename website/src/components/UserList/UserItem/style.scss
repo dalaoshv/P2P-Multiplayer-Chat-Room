@@ -1,21 +1,18 @@
 .user-list {
   &-item {
+    gap: 8px;
     display: flex;
     align-items: center;
-    width: 100%;
-    padding: 5px 2px;
+
+    width: 98%;
+    padding: 5px;
     cursor: default;
     border-radius: 4px;
-
-    // content-visibility: auto;
+    box-sizing: border-box;
 
     &:hover,
     &:focus {
       background-color: var(--background-mask);
-    }
-
-    .avatar {
-      margin-right: 8px;
     }
   }
 
@@ -23,29 +20,11 @@
     display: flex;
 
     .text {
-      max-width: 90px;
+      max-width: 110px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .badge {
-      padding: 2px 4px;
-      margin-left: 5px;
-      font-size: 10px;
-      border-radius: 3px;
-    }
-
-    .lord {
-      color: #777;
-      background-color: #f2c55c;
-      border: 1px solid #fff;
-    }
-
-    .admin {
-      color: #fff;
-      background-color: #aa6d4b;
-      border: 1px solid #fff;
-    }
   }
 }

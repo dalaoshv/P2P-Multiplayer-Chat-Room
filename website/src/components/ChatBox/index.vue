@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ChatList from './ChatList/index.vue'
 import SendBar from './SendBar/index.vue'
+import ChatList from './ChatList/index.vue'
 
 </script>
 

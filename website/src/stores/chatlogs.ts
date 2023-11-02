@@ -1,17 +1,17 @@
 import {defineStore} from "pinia";
 import {reactive, ref, shallowRef} from "vue";
 
-interface ChatLog {
+interface Chatlogs {
     content: string;
     username: string;
     timestamp: number;
 }
 
 interface ChatItem {
-    [key: string]: ChatLog[]
+    [key: string]: Chatlogs[]
 }
 
-export const useChatLog = defineStore('chatlogs', () => {
+export const useChatLogs = defineStore('chatlogs', () => {
     const chatlogs = reactive<ChatItem>({});
     const connects = shallowRef<string[]>([]);
     const onlineUsersMap = ref<Map<string, string>>(new Map());
@@ -20,7 +20,7 @@ export const useChatLog = defineStore('chatlogs', () => {
         connects.value.push(username);
     }
 
-    function joinChatLogs(key: string, ...logs: ChatLog[]) {
+    function joinChatLogs(key: string, ...logs: Chatlogs[]) {
         // 判断是否存在对象记录
         const has = chatlogs.hasOwnProperty(key);
 

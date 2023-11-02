@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref, toRef} from 'vue';
+import {useUserInfo} from "@/stores/userinfo.ts";
 
-const isSign = ref(true)
-const isSending = ref(false)
-const inputMsg = ref('')
+const msg = ref('');
+const isSending = ref(false);
+const {loginState} = useUserInfo();
 
 
 const sendMsgHandler = () => {
   // 空消息或正在发送时禁止发送
-  if (!inputMsg.value?.trim().length || isSending.value) {
+  if (!msg.value?.trim().length || isSending.value) {
     return
   }
-
-  isSending.value = true
 }
 
 </script>
@@ -21,25 +20,28 @@ const sendMsgHandler = () => {
   <div class="send-bar">
     <div class="msg-edit">
       <input
+          v-model="msg"
           class="msg-input"
           placeholder="来聊点什么吧~"
-          :disabled="!isSign || isSending"
+          :disabled="!loginState.hasLogin || isSending"
           autofocus
       />
-      <Icon class="action" icon="wenjianjia2" :size="20" colorful />
-      <div class="divider" />
+      <Icon class="action" icon="wenjianjia2" :size="20" colorful/>
+      <div class="divider"/>
       <div
-        :class="['action', { 'is-edit': inputMsg.length, 'disabled': !inputMsg.length }]"
-        @click="sendMsgHandler"
+          :class="['action', { 'is-edit': msg.length, 'disabled': !msg.length }]"
+          @click="sendMsgHandler"
       >
-        <Icon class="send" icon="huojian" :size="20" />
+        <Icon class="send" icon="huojian" :size="20"/>
       </div>
     </div>
-    <span v-if="!isSign" class="tips">
-      <ElIcon class="icon-lock"><IEpLock /></ElIcon>
-      点我<span class="tips-text">登录</span>之后再发言~
+    <span class="tips" v-if="!loginState.ready">
+      正在初始化连接中，请稍后...
+    </span>
+    <span class="tips" v-else-if="!loginState.hasLogin ">
+      请先点击 <span class="tips-text" @click="loginState.showLogin = true">登录</span> 之后再发言~
     </span>
   </div>
 </template>
 
-<style lang="scss" src="./style.scss" scoped />
+<style lang="scss" src="./style.scss" scoped/>

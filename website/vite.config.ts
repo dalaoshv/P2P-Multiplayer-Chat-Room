@@ -24,6 +24,8 @@ export default defineConfig({
     // Vite路径别名配置
     alias: {
       '@': path.resolve(__dirname, 'src')
-    }
+    },
+    // 类型： string[] 导入时想要省略的扩展名列表。
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs']
   }
 })

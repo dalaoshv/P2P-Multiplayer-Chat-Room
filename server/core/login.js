@@ -1,4 +1,3 @@
-const uuid = require("uuid");
 const {sign} = require("../utils/auth");
 const {db, users, online} = require("../utils/users");
 
@@ -6,8 +5,9 @@ const {db, users, online} = require("../utils/users");
  * 用户登录
  * @param username
  * @param password
+ * @param peerID
  */
-async function user_login({username, password}) {
+async function user_login({username, password, peerID}) {
     // 用户名必须是3-8位汉字、英文字母、数字、下划线组成
     if(!/^[\u4E00-\u9FA5a-zA-Z0-9_]{3,8}$/.test(username)) {
         return this.emit('login', '用户名不合法！');
@@ -30,7 +30,7 @@ async function user_login({username, password}) {
     }
 
     // 生成Token
-    const userinfo = {username, peerID: uuid.v4()};
+    const userinfo = {username, peerID};
     const token = sign(userinfo);
 
     // 如果已有其他设备登录
