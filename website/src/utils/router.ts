@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 
+const Chat = () => import('@/views/Chat/index.vue')
 const Home = () => import('@/views/Home/index.vue')
 
 const router = createRouter({
@@ -8,8 +9,14 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Home
+            component: Home,
+            children: [{
+                path: '',
+                component: Chat,
+            },{
+                path: ':id',
+                component: Chat,
+            }]
         },
         {
             path: '/:pathMatch(.*)*',

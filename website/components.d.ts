@@ -11,6 +11,8 @@ declare module 'vue' {
     ChatBox: typeof import('./src/components/ChatBox/index.vue')['default']
     ChatList: typeof import('./src/components/ChatBox/ChatList/index.vue')['default']
     ContextMenu: typeof import('./src/components/UserList/ContextMenu/index.vue')['default']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     Icon: typeof import('./src/components/Widgets/Icon/index.vue')['default']

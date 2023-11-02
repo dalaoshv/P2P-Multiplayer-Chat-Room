@@ -1,6 +1,5 @@
-const uuid = require("uuid");
 const {users, online, getOnlineUsers} = require("../utils/users");
-const {io, broadcast} = require("../utils/sever");
+const {io, broadcast, socket_emit} = require("../utils/sever");
 
 // 延迟离线任务，防止页面刷新频繁下线
 const delayOfflineTask = new Map();
@@ -8,9 +7,9 @@ const delayOfflineTask = new Map();
 /**
  * 监听用户上线
  */
-function user_online() {
-    const userinfo = this.userinfo;
-    const username = userinfo.username;
+function user_online(peerID) {
+    const username = this.username;
+    const userinfo = {username, peerID};
 
     // 用户在线
     if(online.has(username)) {
@@ -30,7 +29,7 @@ function user_online() {
         }
 
         // 强制下线（清除授权）
-        io.sockets.sockets.get(id)?.disconnect(true);
+        socket_emit(id, 'disconnect');
     }
 
     // 更新用户信息
@@ -49,7 +48,7 @@ function user_online() {
  * 用户下线
  */
 function user_offline(reason) {
-    const username = this.userinfo.username;
+    const username = this.username;
     const socket_id = online.get(username)?.id;
 
     if(reason === 'server namespace disconnect') return;

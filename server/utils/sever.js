@@ -21,7 +21,23 @@ function broadcast(event, ...data) {
     });
 }
 
+/**
+ * 对话指定id
+ */
+function socket_emit(id, event, ...data) {
+    const socket = io.sockets.sockets.get(id);
+    if(socket) {
+        if(event === 'disconnect') {
+            socket.disconnect(true);
+            return;
+        }
+
+        socket.emit(event, ...data);
+    }
+}
+
 module.exports = {
     io,
-    broadcast
+    broadcast,
+    socket_emit
 }

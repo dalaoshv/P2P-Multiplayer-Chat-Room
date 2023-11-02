@@ -1,9 +1,10 @@
-import {reactive, ref} from "vue";
+import {reactive, ref, watch} from "vue";
 import {defineStore} from "pinia";
 import {ElMessage} from "element-plus";
-import {peer, socket} from "../utils/socket";
+import {socket} from "../utils/socket";
 
 export const useUserInfo = defineStore('auth', () => {
+    const peerID = ref('');
     const username = ref('');
     const token = ref(localStorage.getItem('token'));
     const loginState = reactive({
@@ -13,24 +14,12 @@ export const useUserInfo = defineStore('auth', () => {
         showLogin: false
     });
 
-    // 初始化P2P信令ID
-    const peerID = ref('');
-    peer.on('open', (id) => {
-        peerID.value = id;
-        loginState.ready = true;
-    });
-
-    socket.on('connect', () => {
-        if(!token.value) return;
-
-        socket.emit('user-online');
-        socket.once('authorized', (data) => {
-            // 更新登录状态
-            username.value = data;
-            loginState.loading = false;
-            loginState.hasLogin = true;
-            loginState.showLogin = false;
-        });
+    socket.on('authorized', (data) => {
+        // 更新登录状态
+        username.value = data;
+        loginState.loading = false;
+        loginState.hasLogin = true;
+        loginState.showLogin = false;
     });
 
     // 监听用户登录
@@ -44,18 +33,21 @@ export const useUserInfo = defineStore('auth', () => {
             showClose: true
         });
 
-        token.value = data;
-        localStorage.setItem('token', data);
-
         // 建立新的链接
         socket.disconnect();
         socket.connect();
+
+        token.value = data;
+        sessionStorage.setItem('token', data);
+
+        socket.emit('user-online', peerID.value);
     });
 
     // 强制踢下线
     socket.on('disconnect', (reason) => {
         if (reason === 'io server disconnect') {
             token.value = '';
+            sessionStorage.clear();
         }
 
         username.value = '';

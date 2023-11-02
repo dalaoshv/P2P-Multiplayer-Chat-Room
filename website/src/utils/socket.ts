@@ -1,13 +1,14 @@
-import Peer from "peerjs";
+import Peer, {DataConnection} from "peerjs";
 import {io} from 'socket.io-client';
 
 // SocketIO信息初始化
 const SOCKET_ROOT = 'ws://localhost:3000';
 
 export const peer = new Peer();
+export const connections = new Map<string, DataConnection>();
 export const socket = io(`${SOCKET_ROOT}`, {
     auth: (cb) => {
-        cb({token: localStorage.getItem('token')});
+        cb({token: sessionStorage.getItem('token')});
     },
     transports: ['websocket'],
     extraHeaders: {'Access-Control-Allow-Origin': '*'}

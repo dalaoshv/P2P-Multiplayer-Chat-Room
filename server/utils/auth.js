@@ -24,7 +24,7 @@ const verify = (token = '') => {
         } else {
             return data;
         }
-    })
+    });
 }
 
 

@@ -18,17 +18,6 @@
   content: '\e638';
 }
 
-.icon-more::before {
-  content: '\e83d';
-}
-
-.icon-arrow-down::before {
-  content: '\e687';
-}
-
-.icon-arrow-right::before {
-  content: '\eaf3';
-}
 
 .icon-group::before {
   content: '\e6ff';
@@ -42,49 +31,14 @@
   content: '\e622';
 }
 
-.icon-aixin::before {
-  content: '\e711';
-}
-
 .icon-biaoqing::before {
   content: '\e61c';
-}
-
-.icon-bofang::before {
-  content: '\e62a';
 }
 
 .icon-guanbi1::before {
   content: '\eaf2';
 }
 
-.icon-guanbi::before {
-  content: '\e61e';
-}
-
-.icon-aite::before {
-  content: '\e60c';
-}
-
-.icon-tupian1::before {
-  content: '\e640';
-}
-
-.icon-jianpan::before {
-  content: '\e6d8';
-}
-
-.icon-saying::before {
-  content: '\e62f';
-}
-
-.icon-xiazai::before {
-  content: '\e616';
-}
-
-.icon-dislike::before {
-  content: '\e67c';
-}
 
 .icon-huojian::before {
   content: '\e68b';
@@ -102,20 +56,8 @@
   content: '\e63a';
 }
 
-.icon-zhankai::before {
-  content: '\e657';
-}
-
-.icon-chehui::before {
-  content: '\e665';
-}
-
 .icon-shanchu::before {
   content: '\e6bb';
-}
-
-.icon-voice::before {
-  content: '\e85e';
 }
 
 .icon-avatar::before {

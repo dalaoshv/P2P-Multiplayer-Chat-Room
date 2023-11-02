@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ChatBox from '../../components/ChatBox/index.vue'
 import UserList from '../../components/UserList/index.vue'
 import UserLogin from '../../components/UserLogin/index.vue'
 </script>
@@ -8,7 +7,7 @@ import UserLogin from '../../components/UserLogin/index.vue'
   <main class="home">
     <UserLogin />
     <UserList />
-    <ChatBox />
+    <RouterView />
   </main>
 </template>
 

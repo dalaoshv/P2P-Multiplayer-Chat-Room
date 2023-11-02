@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import UserItem from './UserItem/index.vue';
-import {useOnlineUsers} from "@/stores/activists.ts";
+import {useP2PChatRoom} from "@/stores/p2p.ts";
 
-const {onlineUsers} = useOnlineUsers();
+const {online} = useP2PChatRoom();
 </script>
 
 <template>
   <div class="user-list-wrapper">
-    <div class="user-list-header">在线人数：{{onlineUsers.size}}</div>
+    <div class="user-list-header">
+      在线人数：{{online.size}}
+    </div>
     <TransitionGroup tag="ul" name="fade" class="user-list">
       <UserItem
           :key="username"
           :username="username"
-          v-for="[username] of onlineUsers.entries()"
+          v-for="[username] of online.entries()"
       />
     </TransitionGroup>
   </div>

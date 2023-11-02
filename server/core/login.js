@@ -1,4 +1,5 @@
 const {sign} = require("../utils/auth");
+const {socket_emit} = require("../utils/sever");
 const {db, users, online} = require("../utils/users");
 
 /**
@@ -30,8 +31,7 @@ async function user_login({username, password, peerID}) {
     }
 
     // 生成Token
-    const userinfo = {username, peerID};
-    const token = sign(userinfo);
+    const token = sign({username});
 
     // 如果已有其他设备登录
     if(online.has(username)) {
@@ -39,11 +39,11 @@ async function user_login({username, password, peerID}) {
 
         // 强制下线
         users.delete(token);
-        this.io.sockets.sockets.get(id)?.disconnect(true);
+        socket_emit(id, 'disconnect');
     }
 
     // 更新在线用户数据
-    users.set(token, userinfo);
+    users.set(token, {username, peerID});
     online.set(username, {id: this.id, token});
 
     // 返回Token

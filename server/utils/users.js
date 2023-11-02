@@ -1,6 +1,5 @@
 const {join} = require("path");
 const {JsonDB, Config} = require("node-json-db");
-const {verify} = require("./auth");
 
 // 用户在线信息数据
 const users = new Map();
