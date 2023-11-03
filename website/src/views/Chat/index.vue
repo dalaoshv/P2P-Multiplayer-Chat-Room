@@ -6,7 +6,7 @@ import {useUserInfo} from "@/stores/user.ts";
 import {useP2PChatRoom} from "@/stores/p2p.ts";
 
 import SendBar from "./SendBar/index.vue";
-import ChatList from "./SendBar/index.vue";
+import ChatList from "./ChatList/index.vue";
 
 const route = useRoute();
 const user = useUserInfo();

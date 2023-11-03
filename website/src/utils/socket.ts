@@ -2,7 +2,7 @@ import {io} from 'socket.io-client';
 import Peer, {DataConnection} from "peerjs";
 
 // SocketIO信息初始化
-const SOCKET_ROOT = 'ws://localhost:3000';
+const SOCKET_ROOT = 'ws://121.41.1.42:3000';
 export const connections = new Map<string, DataConnection>();
 
 // P2P Peer对象

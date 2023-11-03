@@ -8,7 +8,7 @@ import {ElementPlusResolver} from "unplugin-vue-components/resolvers";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/P2P-Multiplayer-Chat-Room/',
+    base: '/',
     build: {
         outDir: '../docs' // 导出到项目根目录，人工部署Github Page
     },
