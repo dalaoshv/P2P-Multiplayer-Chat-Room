@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import UserList from "@/components/UserList";
-import UserLogin from "@/components/UserLogin";
+import UserList from "@/components/UserList/index.vue";
+import UserLogin from "@/components/UserLogin/index.vue";
 </script>
 
 <template>

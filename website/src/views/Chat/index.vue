@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import {computed, watch} from "vue";
+import {computed} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
 import {useUserInfo} from "@/stores/user.ts";
 import {useP2PChatRoom} from "@/stores/p2p.ts";
 
-import SendBar from "./SendBar";
-import ChatList from "./ChatList";
+import SendBar from "./SendBar/index.vue";
+import ChatList from "./SendBar/index.vue";
 
 const route = useRoute();
 const user = useUserInfo();
 const p2p = useP2PChatRoom();
 
 const username = computed(() => (
-    user.username && user.username !== route.params.id && route.params.id && p2p.online.has(route.params.id) ? route.params.id : ''
-));
+    user.username && user.username !== route.params.id && route.params.id && p2p.online.has(<string>route.params.id) ? route.params.id : ''
+) as string);
 
 const router = useRouter();
 const handleGoBack = () => {

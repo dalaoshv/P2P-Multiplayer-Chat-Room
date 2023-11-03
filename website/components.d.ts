@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('./src/components/Widgets/Avatar/index.vue')['default']
-    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     Icon: typeof import('./src/components/Widgets/Icon/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

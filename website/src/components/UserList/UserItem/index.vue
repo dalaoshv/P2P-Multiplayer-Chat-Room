@@ -15,7 +15,7 @@ const route = useRoute();
 const p2p = useP2PChatRoom();
 const isActive = computed(() => (
     router.currentRoute.value.params?.id === props.username ||
-    (!(user.username && user.username !== route.params.id && route.params.id && p2p.online.has(route.params.id)) && user.username === props.username)
+    (!(user.username && user.username !== route.params.id && route.params.id && p2p.online.has(<string>route.params.id)) && user.username === props.username)
 ))
 
 const handleJump = () => {

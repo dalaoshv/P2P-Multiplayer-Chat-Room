@@ -23,8 +23,8 @@ export const useP2PChatRoom = defineStore('p2p', () => {
 
     const route = useRoute();
     const currentUser = computed(() => (
-        !route.params?.id || !online.value.has(route.params.id) || user.username === route.params.id ? user.username : route.params.id
-    ));
+        !route.params?.id || !online.value.has(<string>route.params.id) || user.username === route.params.id ? user.username : route.params.id
+    ) as string);
 
     watch(() => route.params, () => {
         active.value.delete(currentUser.value);
@@ -42,10 +42,10 @@ export const useP2PChatRoom = defineStore('p2p', () => {
     }
 
     function sendP2PMsg(username, content) {
-        if(username === user.username) return;
+        if (username === user.username) return;
 
         (username ? [connections.get(username)] : connections).forEach((conn) => {
-            if(conn) conn.send({
+            if (conn) conn.send({
                 event: 'chat', data: {
                     content,
                     username: user.username,
@@ -66,7 +66,7 @@ export const useP2PChatRoom = defineStore('p2p', () => {
             console.log(event, data)
 
             // 其他用户收到消息
-            if(data?.key !== '@' && username !== currentUser.value) {
+            if (data?.key !== '@' && username !== currentUser.value) {
                 console.log(6666, username, currentUser.value)
                 active.value.add(username);
             }
@@ -103,7 +103,7 @@ export const useP2PChatRoom = defineStore('p2p', () => {
                 const {key, content, username} = data;
 
                 // 收到全体消息
-                if(data?.key === '@' && currentUser.value !== user.username) {
+                if (data?.key === '@' && currentUser.value !== user.username) {
                     active.value.add(user.username);
                 }
 
@@ -131,7 +131,7 @@ export const useP2PChatRoom = defineStore('p2p', () => {
 
         if (isExisted) {
             connections.get(username).close();
-            if(currentUser.value !== username) {
+            if (currentUser.value !== username) {
                 active.value.add(username);
             }
         }
@@ -172,7 +172,7 @@ export const useP2PChatRoom = defineStore('p2p', () => {
             const dataConnection = peer.connect(peerID, {metadata: user.username});
             connections.set(username, dataConnection);
 
-            if(permits[username] !== 2) permits[username] = 0;
+            if (permits[username] !== 2) permits[username] = 0;
 
             dataConnection.once('open', () => {
                 joinOneChatLogs(username, {
@@ -223,6 +223,7 @@ export const useP2PChatRoom = defineStore('p2p', () => {
         sendP2PMsg
     }
 }, {
+    // @ts-ignore
     persist: {
         enabled: true,
         strategies: [{

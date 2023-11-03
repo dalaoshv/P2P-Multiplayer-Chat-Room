@@ -1604,7 +1604,7 @@ packages:
     engines: {node: '>=8.6'}
 
   registry.npmmirror.com/pinia-plugin-persist@1.0.0(pinia@2.1.7)(vue@3.3.7):
-    resolution: {integrity: sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia-plugin-persist/-/pinia-plugin-persist-1.0.0.tgz}
+    resolution: {integrity: sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw==, tarball: https://registry.npmmirror.com/pinia-plugin-persist/-/pinia-plugin-persist-1.0.0.tgz}
     id: registry.npmmirror.com/pinia-plugin-persist/1.0.0
     name: pinia-plugin-persist
     version: 1.0.0
@@ -2059,7 +2059,7 @@ packages:
     dev: true
 
   registry.npmmirror.com/vue-demi@0.12.5(vue@3.3.7):
-    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz}
+    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz}
     id: registry.npmmirror.com/vue-demi/0.12.5
     name: vue-demi
     version: 0.12.5

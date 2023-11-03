@@ -1,11 +1,9 @@
-import {reactive, ref, watch} from "vue";
+import {reactive, ref} from "vue";
 import {defineStore} from "pinia";
 import {ElMessage} from "element-plus";
 import {socket} from "../utils/socket";
-
 export const useUserInfo = defineStore('auth', () => {
-    const peerID = ref('');
-    const username = ref('');
+    const peerID = ref(), username = ref();
     const token = ref(localStorage.getItem('token'));
     const loginState = reactive({
         ready: false,

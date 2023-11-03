@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, type CSSProperties } from 'vue'
+import {computed, type CSSProperties} from 'vue'
 
 interface Props {
   /** 图标名称 */
@@ -11,32 +11,36 @@ interface Props {
   /** 加载态 */
   spin?: boolean
 }
+
 const props = withDefaults(defineProps<Props>(), {
   size: 16,
-})
+});
 
 const iconCls = computed(() => {
   return [
-    {
-      mallchat: !props.colorful,
-      [`icon-spin`]: props.spin,
-    },
     `icon-${props.icon}`,
+    {
+      mallchat: true,
+      [`icon-spin`]: props.spin,
+    }
   ]
 })
 
 const innerStyle = computed(() => {
-  const styles: CSSProperties = {}
+  const styles: CSSProperties = {};
+
   if (props.size) {
-    styles.fontSize = typeof props.size === 'number' ? `${props.size}px` : props.size
+    styles.fontSize = typeof props.size === 'number' ? `${props.size}px` : props.size;
   }
+
   if (props.rotate) {
-    styles.transform = `rotate(${props.rotate}deg)`
+    styles.transform = `rotate(${props.rotate}deg)`;
   }
-  return styles
+
+  return styles;
 })
 </script>
 
 <template>
-  <i :class="iconCls" :style="innerStyle" />
+  <i :class="iconCls" :style="innerStyle"/>
 </template>

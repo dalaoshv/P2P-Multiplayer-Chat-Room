@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import Icon from '../Icon';
+import {ref} from 'vue'
+import Icon from '../Icon/index.vue';
 
 interface Props {
   /** 头像地址 */
@@ -28,18 +28,18 @@ const hasError = ref(false)
 
 <template>
   <div
-    :class="['avatar', `avatar-${shape}`, { downline: !online }]"
-    :style="{ width: size + 'px', height: size + 'px' }"
+      :class="['avatar', `avatar-${shape}`, { downline: !online }]"
+      :style="{ width: size + 'px', height: size + 'px' }"
   >
     <template v-if="src">
-      <Icon v-if="hasError" icon="avatar" :size="size" />
-      <img v-else :src="src" alt="avatar" @error="hasError = true" />
+      <Icon v-if="hasError" icon="avatar" :size="size"/>
+      <img v-else :src="src" alt="avatar" @error="hasError = true"/>
     </template>
     <slot v-else>
-      <Icon icon="avatar" :size="size" />
+      <Icon icon="avatar" :size="size"/>
     </slot>
-    <i v-if="showStatus" class="status" />
+    <i v-if="showStatus" class="status"/>
   </div>
 </template>
 
-<style lang="scss" src="./style.scss" scoped />
+<style lang="scss" src="./style.scss" scoped/>
