@@ -26,6 +26,7 @@ const {loginState, handleLogin} = useUserInfo();
         <label class="label">密码</label>
         <input
             class="input"
+            type="password"
             v-model="password"
             placeholder="6-9位字母和数字"
         />

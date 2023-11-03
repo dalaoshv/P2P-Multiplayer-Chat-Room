@@ -3,10 +3,10 @@ import Peer, {DataConnection} from "peerjs";
 
 // SocketIO信息初始化
 const SOCKET_ROOT = 'ws://localhost:3000';
+export const connections = new Map<string, DataConnection>();
 
 // P2P Peer对象
 export const peer = new Peer();
-export const connections = new Map<string, DataConnection>();
 export const socket = io(`${SOCKET_ROOT}`, {
     auth: (cb) => {
         cb({token: sessionStorage.getItem('token')});

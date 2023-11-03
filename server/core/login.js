@@ -10,19 +10,19 @@ const {db, users, online} = require("../utils/users");
  */
 async function user_login({username, password, peerID}) {
     // 用户名必须是3-8位汉字、英文字母、数字、下划线组成
-    if(!/^[\u4E00-\u9FA5a-zA-Z0-9_]{3,8}$/.test(username)) {
+    if (!/^[\u4E00-\u9FA5a-zA-Z0-9_]{3,8}$/.test(username)) {
         return this.emit('login', '用户名不合法！');
     }
 
     // 密码必须是6-9位英文字母、数字组成
-    if(!/^[a-zA-Z0-9]{6,9}$/.test(password)) {
+    if (!/^[a-zA-Z0-9]{6,9}$/.test(password)) {
         return this.emit('login', '密码不合法！');
     }
 
     // 判断是否存在用户
-    if(await db.exists(`/${username}`)) {
+    if (await db.exists(`/${username}`)) {
         // 用户密码不匹配
-        if(password !== await db.getData(`/${username}`)) {
+        if (password !== await db.getData(`/${username}`)) {
             return this.emit('login', '账号或密码错误！');
         }
     } else {
@@ -34,7 +34,7 @@ async function user_login({username, password, peerID}) {
     const token = sign({username});
 
     // 如果已有其他设备登录
-    if(online.has(username)) {
+    if (online.has(username)) {
         const {id, token} = online.get(username);
 
         // 强制下线

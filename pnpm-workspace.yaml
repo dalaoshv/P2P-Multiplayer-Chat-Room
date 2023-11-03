@@ -1,5 +1,5 @@
 packages:
-  # server
+  # p2p-multiplayer-chat-room server
   - 'server'
-  # website
+  # p2p-multiplayer-chat-room website
   - 'website'

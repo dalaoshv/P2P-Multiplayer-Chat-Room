@@ -13,21 +13,23 @@ const db = new JsonDB(new Config(
 
 /**
  * 返回在线用户
- * @param name
- * @return {*[]}
+ * @param myself
+ * @return {{username: string;peerID: string}[]}
  */
-function getOnlineUsers(name) {
+function getOnlineUsers(myself) {
+    // 返回的用户数组对象
     const data = [];
 
+    // 遍历用户Map对象
     users.forEach((value) => {
         // 如果是自己，则放到最前面
-        if(name === value.username) {
+        if (myself === value.username) {
             data.unshift(value);
             return;
         }
 
         // 将其他用户从后面插入
-        data.push(value)
+        data.push(value);
     });
 
     return data;

@@ -15,7 +15,7 @@ io.on("connection", (socket) => {
     socket.username = verify(socket.token)?.username;
 
     // 无授权或授权失效
-    if(!socket.username) return;
+    if (!socket.username) return;
 
     // 监听用户下线
     socket.on('disconnect', user_offline);

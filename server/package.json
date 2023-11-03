@@ -10,7 +10,6 @@
     "jsonwebtoken": "^9.0.2",
     "node-json-db": "^2.3.0",
     "nodemon": "^3.0.1",
-    "socket.io": "^4.7.2",
-    "uuid": "^9.0.1"
+    "socket.io": "^4.7.2"
   }
 }

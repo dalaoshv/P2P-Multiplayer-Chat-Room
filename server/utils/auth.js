@@ -4,7 +4,7 @@ const secretKey = '20231101P2P-Multiplayer-Chat-Room';
 /**
  * 生成Token
  * @param data
- * @return {*}
+ * @return {string}
  */
 const sign = (data = {}) => {
     return jwt.sign(data, secretKey, {
@@ -15,18 +15,13 @@ const sign = (data = {}) => {
 /**
  * 校验Token
  * @param token
- * @return {*}
+ * @return {string}
  */
 const verify = (token = '') => {
-    return jwt.verify(token, secretKey, function (err, data) {
-        if(err) {
-            return null;
-        } else {
-            return data;
-        }
+    return jwt.verify(token, secretKey,  (err, data) => {
+        return err ? null : data;
     });
 }
-
 
 module.exports = {
     sign,
